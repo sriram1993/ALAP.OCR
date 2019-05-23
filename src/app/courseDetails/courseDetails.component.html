@@ -1,0 +1,37 @@
+<script src ="assets/courseDetails/pdf.js"></script>
+<nav class="navbar navbar-light bg-light" style="background-color: #E5E4E2;"><h1>Welcome Admin!!!</h1><a [routerLink]="['/login']">Logout</a></nav><br/> 
+<form [formGroup]="form" (ngSubmit)="approve()" id="courseContainer">
+    <div class="card bg-light">
+      <div class="card-body">
+           <div><b>Request Details</b></div>
+          <div><b>Name:</b> {{selectedRequest.FirstName}}&nbsp;{{selectedRequest.LastName}}</div>
+          <div><b>Matriculation Number:</b> {{selectedRequest.MatrNo}}</div>
+          <div><b>Course Name:</b> {{selectedRequest.CourseName}}</div>
+      </div>
+     </div>
+
+
+       
+    
+  <div style="overflow-y: auto; height:400px;" [hidden]='message!=""'>
+  <ng-container formArrayName="tempSubjects" *ngFor="let request of form.controls.tempSubjects.controls; let i = index">
+    <div class="card">
+  <div class="card-body">
+    <input type="checkbox"  [formControlName]="i" checked/>
+    {{tempSubjects[i].subjectName}}
+  </div>
+</div>   
+  </ng-container>
+  <br/>
+  <button class="btn btn-primary" (click)="downloadPDF()">Approve</button>&nbsp;&nbsp;
+  <a href="file:///S:/Sciebo/HSRW/WS18/ARPB/angular-6-registration-login-example-master/angular-6-registration-login-example-master/src/app/courseDetails/TransComp.pdf
+" target="_blank">Click to open Transcript</a>
+ </div>
+
+</form>
+<b>{{message}}</b>
+ 
+  
+    
+    
+ 

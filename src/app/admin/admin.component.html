@@ -1,0 +1,21 @@
+﻿<nav class="navbar navbar-light bg-light" style="background-color: #E5E4E2;"><h1>Welcome Admin!!!</h1><a [routerLink]="['/login']">Logout</a></nav><br/>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Matriculation No.</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Course</th>
+            <th scope="col">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let request of listOfRequests">
+         <th scope="row">{{request.MatrNo}}</th>
+            <td>{{request.FirstName}}</td>
+            <td>{{request.LastName}}</td>
+            <td>{{request.CourseName}}</td>
+            <td><u><a (click) = "getDetails(request.MatrNo)">Details</a></u></td>
+        </tr>           
+    </tbody>
+</table>

@@ -1,0 +1,60 @@
+﻿
+
+<nav class="navbar navbar-light bg-light" style="background-color: #E5E4E2;"><h1>Hi {{currentUser.firstName}}!</h1><a [routerLink]="['/login']">Logout</a></nav><br/>
+<div id="containerDiv" *ngIf="isNotSubmitted; else elseBlock">
+<div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" [(ngModel)]="currentUser.firstName"/>
+</div>
+<div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" [(ngModel)]="currentUser.lastName"/>
+</div>
+<div class="form-group">
+        <label for="username">Matriculation Number</label>
+        <input type="text" class="form-control" [(ngModel)]="currentUser.username"/>
+</div>
+
+<div>
+  <label for="courseName">Course Name</label>
+        <select [(ngModel)]="currentUser.courseName" class="form-control">
+  <option value="Information Engineering and Computer Science">Information Engineering and Computer Science</option>
+  <option value="Mobility Engineering">Mobility Engineering</option>
+</select>
+</div>
+<div>
+  <label>Transcript</label>
+  <input id="inputFile" type="file" class="form-control" (change)="convertToBase64()"/>
+  <span id="uploadMessage" *ngIf="uploadStatusDisplay">Please Wait, your Transcript is getting Uploaded...</span>
+</div>
+<p>
+<div class="form-group">
+        <button class="btn btn-primary" (click)="submitForApproval()" [disabled]="submitButtonDisabled">Submit</button>
+        
+</div>
+ <ng-template #elseBlock>
+ <h6>Please select maximum of 2 preferred subjects from the list</h6>
+ 
+<form [formGroup]="form" (ngSubmit)="submit()">
+	<div style="overflow-y: auto; height:400px;">
+  <ng-container formArrayName="subjects" *ngFor="let subject of form.controls.subjects.controls; let i = index">
+  	<div class="card">
+  <div class="card-body">
+    <input type="checkbox" [formControlName]="i">
+    {{subjects[i].subjectName}}
+  </div>
+</div>
+
+    
+  </ng-container>
+
+
+
+ </div>
+  <button>Submit for Approval</button>
+</form>
+
+<b>{{message}}</b>
+</ng-template>
+
+
